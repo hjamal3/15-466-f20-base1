@@ -50,7 +50,7 @@ struct PPU466 {
 	// The PPU stores 8 palettes for use when drawing tiles:
 	std::array< Palette, 8 > palette_table;
 
-	//Tile:
+	//Tile: a tile is the visual! 8 by 8 pixels.
 	// The PPU uses 8x8 4-bit indexed-color tiles:
 	// each tile is stored as two 8x8 "bit plane" images
 	//   each bit-plane image is stored in rows from bottom-to-top
@@ -97,7 +97,7 @@ struct PPU466 {
 	// The background's lower-left pixel can positioned anywhere
 	//   this can be used to "scroll the screen".
 	glm::ivec2 background_position = glm::ivec2(0,0);
-	//
+
 	// screen pixels "outside the background" wrap around to the other side.
 	// thus, background_position values of (x,y) and of (x+n*512,y+m*480) for
 	// any integers n,m will look the same
@@ -124,10 +124,10 @@ struct PPU466 {
 	//   or behind (priority = 1) the background
 	//
 	struct Sprite {
-		uint8_t x = 0; //x position. 0 is the left edge of the screen.
+		uint8_t x = 0; //x position. 0 is the left edge of the screen. 
 		uint8_t y = 240; //y position. 0 is the bottom edge of the screen. >= 240 is off-screen
-		uint8_t index = 0; //index into tile table
-		uint8_t attributes = 0; //tile attribute bits
+		uint8_t index = 0; //index into tile table -> which graphic to draw
+		uint8_t attributes = 0; //tile attribute bits -> what color (in palette + background or foreground)
 	};
 	static_assert(sizeof(Sprite) == 4, "Sprite is a 32-bit value.");
 	//
