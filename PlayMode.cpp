@@ -324,6 +324,7 @@ void PlayMode::update(float elapsed) {
 		float dist_enemy3_player = sqrt((player_at.y - enemy3_at.y) * (player_at.y - enemy3_at.y) + (player_at.x - enemy3_at.x) * (player_at.x - enemy3_at.x));
 
 		if (dist_enemy1_player > 2.0f && dist_enemy2_player > 2.0f && dist_enemy3_player > 2.0f) {
+			// from Artificial Intelligence for Games by Ian Millington and John Funge
 			enemy1_velocity = (player_at - enemy1_at) / dist_enemy1_player;
 			enemy2_velocity = (player_at - enemy2_at) / dist_enemy2_player;
 			enemy3_velocity = (player_at - enemy3_at) / dist_enemy3_player;
