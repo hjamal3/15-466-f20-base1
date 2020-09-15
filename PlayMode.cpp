@@ -342,7 +342,7 @@ void PlayMode::update(float elapsed) {
 		}
 
 		// check if enemy hit beam
-		for (int i = 2; i < 7; i++)
+		for (int i = 2; i < 2+max_beams; i++)
 		{
 			float dist_beam_enemy1 = sqrt((enemy1_at.y - ppu.sprites[i].y) * (enemy1_at.y - ppu.sprites[i].y) + (enemy1_at.x - ppu.sprites[i].x) * (enemy1_at.x - ppu.sprites[i].x));
 			float dist_beam_enemy2 = sqrt((enemy2_at.y - ppu.sprites[i].y) * (enemy2_at.y - ppu.sprites[i].y) + (enemy2_at.x - ppu.sprites[i].x) * (enemy2_at.x - ppu.sprites[i].x));
