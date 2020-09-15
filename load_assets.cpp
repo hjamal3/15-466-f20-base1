@@ -101,7 +101,7 @@ void read()
 	if (in)
 	{
 		read_chunk(in, "spr0", &tiles_in);
-		for (int i = 0; i < tiles_in.size(); i++)
+		for (uint32_t i = 0; i < tiles_in.size(); i++)
 		{
 			std::cout << tiles_in[i].a << std::endl;
 		}
