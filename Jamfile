@@ -79,11 +79,14 @@ GAME_NAMES =
 	Mode
 	GL
 	Load
+	data_path
+	Sprite
 	;
 
 ## taken from: https://github.com/15-466/15-466-f19-base1/blob/master/Jamfile
 PACK_SPRITES_NAMES =
-	test_load_png
+	load_assets
+	Sprite
 	;
 
 LOCATE_TARGET = objs ; #put objects in 'objs' directory
