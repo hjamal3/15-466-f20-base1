@@ -14,8 +14,8 @@ Palettes are stored in a vector of structs and loaded with the read_chunks funct
 jam && sprites\pack-sprites.exe to compile palettes
 
 
-How To Play:
-  
+How To Play:  
+jam && dist\game.exe to play  
 Help the robot reach the base before the enemies reach the robot! Arrow keys to move robot. Space bar to create bomb. If an enemy hits bomb, it gets pushed back.
 
 Sources: I created all assets using GIMP.
