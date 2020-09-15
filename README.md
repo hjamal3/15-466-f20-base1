@@ -1,22 +1,22 @@
-# (TODO: your game's title)
+# Bomzies
 
-Author: (TODO: your name)
+Author: Haidar Jamal
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: In this game there are 3 AIs that chase you around. The pursuit strategy is naive but the enemy is fast, so one needs to make fast decisions.
 
 Screen Shot:
 
 ![Screen Shot](screenshot.png)
 
 How Your Asset Pipeline Works:
-
-(TODO: describe the steps in your asset pipeline, from source files to tiles/backgrounds/whatever you upload to the PPU466.)
+Pngs representing tiles are custom created and placed into the sprites folder. These are loaded at the start of the program in a global Load function.  
+Palettes are stored in a vector of structs and loaded with the read_chunks function.
 
 How To Play:
 
-(TODO: describe the controls and (if needed) goals/strategy.)
+Help the robot reach the base before the enemies reach the robot! Arrow keys to move robot. Space bar to create bomb. If an enemy hits bomb, it gets pushed back.
 
-Sources: (TODO: list a source URL for any assets you did not create yourself. Make sure you have a license for the asset.)
+Sources: I created all assets using GIMP.
 
 This game was built with [NEST](NEST.md).
 
