@@ -2,7 +2,7 @@
 
 Author: Haidar Jamal
 
-Design:   In this game there are 3 AIs that chase you around. Make it to the goal before they make it to you. The pursuit strategy is naive but the enemy is fast, so move fast!
+Design:   In this game there are 3 AIs that chase you around. Make it to the goal before they make it to you. Also blow them up if you need to. The pursuit strategy is naive but the enemy is fast, so move fast!
 
 Screen Shot:
 
