@@ -168,7 +168,7 @@ PlayMode::PlayMode() {
 	insert_tile_table(beam_right, 8);
 
 	// create the beams
-	for (int i = 2; i < 2+max_beams; i++)
+	for (uint32_t i = 2; i < 2+max_beams; i++)
 	{
 		ppu.sprites[i].x = 255;
 		ppu.sprites[i].y = 255;
@@ -176,7 +176,7 @@ PlayMode::PlayMode() {
 	}
 
 	// insert palettes
-	for (int i = 0; i < palettes->size(); i++)
+	for (uint32_t i = 0; i < palettes->size(); i++)
 	{
 		ppu.palette_table[i] = (*palettes)[i];
 	}
