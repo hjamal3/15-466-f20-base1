@@ -62,7 +62,7 @@ void write_palettes()
 	palettes.emplace_back(p6);
 	palettes.emplace_back(p7);
 
-	std::ofstream out("palettes.asset", std::ios::binary);
+	std::ofstream out("sprites\\palettes.asset", std::ios::binary);
 	write_chunk("plt0", palettes, &out);
 }
 

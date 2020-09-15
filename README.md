@@ -10,7 +10,9 @@ Screen Shot:
 
 How Your Asset Pipeline Works:  
 PNGs representing tiles are custom created and placed into the sprites folder. These are loaded at the start of the program in a global Load function.  
-Palettes are stored in a vector of structs and loaded with the read_chunks function.
+Palettes are stored in a vector of structs and loaded with the read_chunks function.  
+jam && sprites\pack-sprites.exe to compile palettes
+
 
 How To Play:
   
