@@ -14,7 +14,6 @@
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
-//#include <bitset>
 
 DummyData const* robot = nullptr;
 DummyData const* box1 = nullptr;
@@ -34,14 +33,9 @@ std::vector<PPU466::Palette> const * palettes;
 // based off: https://github.com/15-466/15-466-f19-base1/blob/99434c0b859571b6cc0edb9e8e3781f54bd29d00/StoryMode.cpp
 // Global function to load all sprites when main is called
 Load<DummyAtlas> dummysprites(LoadTagEarly, []() -> DummyAtlas const* {
-	// SpriteAtlas constructor
-	//DummyAtlas const* ret = nullptr;
-	DummyAtlas const* ret = new DummyAtlas(data_path("test1.kk")); // put it in dist
 
-	// these aren't being used yet
-	robot = & ret->dummy_in[0];
-	box1 = & ret->dummy_in[1];
-	box2 = & ret->dummy_in[2];
+	// called dummy improperly
+	DummyAtlas const* ret = new DummyAtlas(data_path("test1.kk")); // put it in dist
 
 	// in game tiles
 	robot_up = &(ret->robot_up);
@@ -67,6 +61,12 @@ Load<DummyAtlas> dummysprites(LoadTagEarly, []() -> DummyAtlas const* {
 
 	// palettes
 	palettes = &(ret->palettes);
+
+
+	// these aren't being used 
+	robot = &ret->dummy_in[0];
+	box1 = &ret->dummy_in[1];
+	box2 = &ret->dummy_in[2];
 
 	return ret;
 	}
@@ -105,10 +105,6 @@ void PlayMode::insert_tile_table(const std::vector<glm::u8vec4> * sprite_ptr, co
 
 				}
 			} 
-			
-
-			//int x = (int)(*robot_up)[i].x;
-			//x == 0 ? byte |= 0 << (7 - (i-row*8))  : byte |= 1 << (7 - (i - row * 8));
 		}
 		arr1[7 - row] = byte1;
 		arr2[7 - row] = byte2;
@@ -118,44 +114,6 @@ void PlayMode::insert_tile_table(const std::vector<glm::u8vec4> * sprite_ptr, co
 }
 
 PlayMode::PlayMode() {
-	//TODO:
-	// you *must* use an asset pipeline of some sort to generate tiles.
-	// don't hardcode them like this!
-	// or, at least, if you do hardcode them like this,
-	//  make yourself a script that spits out the code that you paste in here
-	//   and check that script into your repository.
-
-	//Also, *don't* use these tiles in your game:
-
-	{ //use tiles 0-16 as some weird dot pattern thing:
-		std::array< uint8_t, 8*8 > distance;
-		for (uint32_t y = 0; y < 8; ++y) {
-			for (uint32_t x = 0; x < 8; ++x) {
-				float d = glm::length(glm::vec2((x + 0.5f) - 4.0f, (y + 0.5f) - 4.0f));
-				d /= glm::length(glm::vec2(4.0f, 4.0f));
-				distance[x+8*y] = std::max(0,std::min(255,int32_t( 255.0f * d )));
-			}
-		}
-		for (uint32_t index = 0; index < 16; ++index) {
-			PPU466::Tile tile;
-			uint8_t t = (255 * index) / 16;
-			for (uint32_t y = 0; y < 8; ++y) {
-				uint8_t bit0 = 0;
-				uint8_t bit1 = 0;
-				for (uint32_t x = 0; x < 8; ++x) {
-					uint8_t d = distance[x+8*y];
-					if (d > t) {
-						bit0 |= (1 << x);
-					} else {
-						bit1 |= (1 << x);
-					}
-				}
-				tile.bit0[y] = bit0;
-				tile.bit1[y] = bit1;
-			}
-			ppu.tile_table[index] = tile;
-		}
-	}
 
 	/**************** My code *****************/
 
@@ -189,6 +147,7 @@ PlayMode::PlayMode() {
 	// insert goal sprite
 	insert_tile_table(goodie, 0);
 	ppu.sprites[1].index = 0;
+	// http://www.cplusplus.com/reference/cstdlib/rand/
 	srand((int)time(NULL));	
 	ppu.sprites[1].x = (int)rand()%150+50;
 	ppu.sprites[1].y = (int)rand()%150+50;
@@ -217,12 +176,12 @@ PlayMode::PlayMode() {
 	}
 
 	// insert palettes
-	//auto & p1 = (*palettes)[0];
 	for (int i = 0; i < palettes->size(); i++)
 	{
 		ppu.palette_table[i] = (*palettes)[i];
 	}
 	std::cout << "Make it to the base. Run my friend. Run." << std::endl;
+
 	/**************** End *****************/
 
 }
@@ -231,7 +190,6 @@ PlayMode::~PlayMode() {
 }
 
 bool PlayMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size) {
-
 	// keyboard, based on https://www.libsdl.org/release/SDL-1.2.15/docs/html/guideinputkeyboard.html
 	switch (evt.type)
 	{
@@ -439,7 +397,6 @@ void PlayMode::draw(glm::uvec2 const &drawable_size) {
 		ppu.background[y] = 1;
 		ppu.background[y + PPU466::BackgroundWidth * 29] = 1;
 	}
-	
 
 	//player sprite:
 	ppu.sprites[0].x = int32_t(player_at.x);

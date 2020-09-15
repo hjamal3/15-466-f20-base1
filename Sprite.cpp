@@ -45,7 +45,7 @@ DummyAtlas::DummyAtlas(std::string const& fname)
 	load_png(enemy_str, &tex_size, &enemy, UpperLeftOrigin);
 
 	// load palettes
-	std::ifstream in_palettes("palettes.asset", std::ios::binary);
+	std::ifstream in_palettes("sprites/palettes.asset", std::ios::binary);
 	if (in_palettes)
 	{
 		// change to something variable.
